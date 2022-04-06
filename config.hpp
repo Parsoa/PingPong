@@ -25,7 +25,7 @@ public:
     int threads = 4 ;
     int coverage = 50 ;
     int batch_size = 1000 ;
-    int aggregate_batches = 5 ;
+    int aggregate_batches = 0 ;
     int min_string_length = 0 ; // not enforced by default
 
     bool binary ;
