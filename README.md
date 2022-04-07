@@ -42,15 +42,16 @@ Let's assume we have 3 samples A, B, and, C. To compute A-specific strings we ha
 ./PingPong search --index [B.index.bin] --fastq /path/to/sample/A --threads [nthreads]
 ```
 
-The algorithm will output a BED file named `subfreespecstrings.bed` with the list of A-specific strings. Each string is defined in terms of:
-* identifier of the read it comes from
+The algorithm will output multiple files named `solutions_batch_<i>.sfs` with the list of A-specific strings. Each string is defined in terms of:
+* identifier of the read it comes from (a `*` means "same identifier as previous SFS")
+* sequence
 * starting position on the read
 * length
 * number of occurrences (we note that from this first pass, this number is always set to 1)
 
-3. Convert the BED to FASTQ (output to stdout):
+3. Convert the `n` .sfs files to FASTQ (output to stdout):
 ```
-./PingPong convert --fastq /path/to/sample/A --bed /path/to/subfreespecstrings.bed --cutoff 0 > subfreespecstrings.fq
+./PingPong convert --batches n > /path/to/all-sfs.fq
 ```
 
 ### PingPong Algorithm Usage
@@ -67,6 +68,11 @@ Optional arguments:
     --workdir             create output files in this directory (default:.)
     --overlap -1/0        run the exact algorithm (-1) or the relaxed one (0) (default:0)
     -t, --threads         number of threads (default:4)
+
+Usage: PingPong convert --batches num_sfs_files
+
+Optional arguments:
+    --workdir             create output files in this directory (default:.)
 ```
 
 ##### Notes
@@ -83,7 +89,10 @@ Optional arguments:
 ./PingPong search --index example/index.fmd --fastq example/child.fq --overlap -1 --workdir example --threads 1
 ```
 
-This will output strings that are specific to `child.fq` in `example/subfreespecstrings.bed`.
+This will output strings that are specific to `child.fq` in `example/solution_batch_0.sfs`. To convert it to `.fq`, run:
+```
+./PingPong convert --workdir example --batches 1 > example/child-sfs.fq
+```
 
 ### Authors
 For inquiries on this software please open an [issue](https://github.com/Parsoa/PingPong/issues) or contact either [Parsoa Khorsand](https://github.com/parsoa) or [Luca Denti](https://github.com/ldenti/).

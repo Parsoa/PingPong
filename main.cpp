@@ -59,14 +59,21 @@ void print_help() {
     cerr << "\t\tOptional arguments: " << endl ;
     cerr << "\t\t\t-b, --binary          output index in binary format" << endl ;
     cerr << "\t\t\t-a, --append          append to existing index (must be stored in binary). DON'T pass this option for building an index you want to use directly." << endl ;
-    cerr << "\t\t\t-t, --threads         number of threads (default is 1)" << endl ;
+    // cerr << "\t\t\t-t, --threads         number of threads (default is 1)" << endl ;
     cerr << "\tTo search for specific strings:" << endl ;
     cerr << "\t\tPingPong search [--index /path/to/index] [--fastq /path/to/fastq] [--threads threads] --workdir /output/directory" << endl ;
     cerr << "\t\tOptional arguments: " << endl ;
-    cerr << "\t\t\t--aggregate         aggregate ouputs directly." << endl ;
-    cerr << "\t\t\t--cutof             sets cutoff for minimum string abundance (tau)" << endl ;
-    cerr << "\tTo aggregate specfic strings:" << endl ;
-    cerr << "\t\tPingPong aggregate --workdir /path/to/string/batches --threads <threads> --cutoff <minimum abundance for strings> --batches <number of output batches>" << endl ;
+    cerr << "\t\t\t--workdir             create output files in this directory (default:.)" << endl;
+    cerr << "\t\t\t--overlap -1/0        run the exact algorithm (-1) or the relaxed one (0) (default:0)" << endl;
+    cerr << "\t\t\t-t, --threads         number of threads (default:4)" << endl;
+    // cerr << "\t\t\t--aggregate         aggregate ouputs directly." << endl ;
+    // cerr << "\t\t\t--cutoff            sets cutoff for minimum string abundance (tau)" << endl ;
+    cerr << "\tTo convert SFS to fastq (print to stdout):" << endl ;
+    cerr << "\t\tPingPong convert [--workdir /output/directory] --batches n" << endl ;
+    cerr << "\t\tOptional arguments: " << endl ;
+    cerr << "\t\t\t--workdir             create output files in this directory (default:.)" << endl;
+    // cerr << "\tTo aggregate specfic strings:" << endl ;
+    // cerr << "\t\tPingPong aggregate --workdir /path/to/string/batches --threads <threads> --cutoff <minimum abundance for strings> --batches <number of output batches>" << endl ;
 }
 
 int main(int argc, char** argv) {
