@@ -99,6 +99,4 @@ For inquiries on this software please open an [issue](https://github.com/Parsoa/
 
 ### Citation
 
-The PingPong is currently pending journal publication. The pre-print is availble below:
-
-https://doi.org/10.1101/2021.03.23.436571
+PingPong is now published in [Bioinformatics Advances](https://doi.org/10.1093/bioadv/vbab005).
